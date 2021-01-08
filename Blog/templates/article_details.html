@@ -51,6 +51,7 @@ body {
     <big><strong>- {{ total_likes }} Like(s)</strong></big><br><br><br>
 
 <hr><h1>Comments...</h1><br/><br/>
+<h5><strong>Time mentioned against all comments follows Greenwich Mean Time (GMT) and not Indian Standard Time (IST).
 {% if not post.comments.all %}
     <h5><strong>No Comments Yet...<a href="{% url 'add_comment' post.pk %}">        Add a Comment...</a></strong></h5>
 {% else %}
