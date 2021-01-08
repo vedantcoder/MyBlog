@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% block title %}Create a new Bolg Post!{% endblock %}
+{% block content %}
+
+<style>
+body {
+  background-image: url('https://webbygiants.com/wp-content/uploads/2019/03/5-Tips-to-use-Gradients-in-Web-Design.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+{% if user.is_authenticated %}
+    <h1>Add a Post !!!</h1>
+    <br/>
+    <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Post</button>
+    </form>
+    </div>
+
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("elder").value
+            = name;
+    </script>
+
+
+{% else %}
+
+You are not allowed here unless you login!
+
+{% endif %}
+
+{% endblock %}

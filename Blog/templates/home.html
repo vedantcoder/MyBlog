@@ -1,0 +1,66 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTExlLXyh_tSS1GIV1RfQrSNj71jqcDID72bg&usqp=CAU');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+<div class="container">
+    <div class="top-left" style="font-family:verdana"><h1>Welcome to<br/>Vedant's Blogging Website!!!</h1><br/><br/>
+        <h4>Hello and Welcome to my own blogging website... Here you can make you own blog post; view, like and comment on other's blogs and search over for several blogging categories...<br/><big>Happy Blogging!</big></h4><br/><br/></div>
+
+    <h5><strong>Please have a look at the video below (It will loop infinitely remember to pause it once viewed)</strong><br/><br/></h5>
+<iframe width="100%" height="425" src="https://www.youtube.com/embed/7KxgBqST8sM?showinfo=0&loop=1&list=PLlyOBP1njtZEedl4dEOsg6mjFm3OjgEal" frameborder="0" allowfullscreen></iframe>
+<ul>
+
+    {% if user.is_authenticated %}
+    <br/><br/>
+    {% else %}
+    <br/><br/><h4 style="color:red">Note:- You cannot post a blog, like, dislike or comment on this website until you login...If you have an account then go to the login page <a href="{% url 'login' %}">here</a> to login...If you Don't have an account then go to the Register page <a href="{% url 'register' %}">here</a> to get an account.</h4><br/><br/></div>
+
+    {% endif %}
+
+<h2>Blog Posts...</h2><br/>
+
+    {% for post in object_list %}
+
+
+        {% if user.is_authenticated %}
+           {% if user.id == post.author.id %}
+                <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+                - <a href="{% url 'category' post.category %}">{{ post.category.title }}</a>
+                - {{ post.author.first_name }}
+                {{ post.author.last_name }} - {{ post.post_date }} -
+                <a href="{% url 'update_post' post.pk %}">(Edit)</a> -
+                <a href="{% url 'delete_post' post.pk %}">(Delete)</a><br/>
+           {% else %}
+                <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+                - <a href="{% url 'category' post.category %}">{{ post.category.title }}</a>
+                - {{ post.author.first_name }}
+                {{ post.author.last_name }} - {{ post.post_date }}<br/>
+           {% endif %}
+            {{ post.snippet }}
+
+        {% else %}
+            <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>- <a href="{% url 'category' post.category %}">{{ post.category.title }}</a><br/> Author: {{ post.author.first_name }}
+            {{ post.author.last_name }} - {{ post.post_date }}
+            <br/>{{ post.snippet }}
+
+        {% endif %}
+
+
+
+    </li>
+    {% endfor%}
+</ul>
+
+
+
+{% endblock %}

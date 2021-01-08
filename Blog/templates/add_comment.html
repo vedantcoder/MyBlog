@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block title %}Add a new Comment!{% endblock %}
+{% block content %}
+
+<style>
+body {
+  background-image: url('https://webbygiants.com/wp-content/uploads/2019/03/5-Tips-to-use-Gradients-in-Web-Design.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+{% if user.is_authenticated %}
+    <h1>Add a New Comment !!!</h1>
+<strong>Note:- After adding the comment you will be redirected to the home page of this website...</strong>
+    <br/>
+    <div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Add Comment</button>
+    </form>
+    </div>
+
+{% else %}
+
+You are not allowed here unless you login!
+
+{% endif %}
+
+{% endblock %}

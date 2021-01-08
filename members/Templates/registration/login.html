@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<style>
+body {
+  background-image: url('https://webbygiants.com/wp-content/uploads/2019/03/5-Tips-to-use-Gradients-in-Web-Design.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+<h1>Login</h1>
+<br/><br/>
+<h5>Enter your correct Username and Password below to Login...!</h5><br/><br/>
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" name="username" placeholder="Username">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+<button class="btn btn-primary">Login</button>
+</form>
+
+
+</form>
+</div>
+
+<br/><br/>
+<h3> Don't have an account...? Register for an account <a href="{% url 'register' %}">here...</a></h3>
+
+{% endblock %}

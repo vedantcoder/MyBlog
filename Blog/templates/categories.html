@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if category_posts %}
+
+<style>
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTExlLXyh_tSS1GIV1RfQrSNj71jqcDID72bg&usqp=CAU');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+<h1>{{ cats }}</h1>
+
+<ul>
+
+{% for post in category_posts %}
+    {% if user.is_authenticated %}
+            <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+            - {{ post.author.first_name }}
+            {{ post.author.last_name }} - {{ post.post_date }} -
+            <a href="{% url 'update_post' post.pk %}">Edit Post</a> -
+            <a href="{% url 'delete_post' post.pk %}">Delete Post</a><br/>
+            {{ post.body|slice:":150"|safe }}
+
+        {% else %}
+            <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}
+            {{ post.author.last_name }} - {{ post.post_date }}
+            <br/>{{ post.body|slice:":150"|safe }}
+
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% else %}
+
+    <h2>Sorry this page does not exist...</h2>
+
+{% endif %}
+
+{% endblock %}
