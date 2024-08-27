@@ -13,6 +13,6 @@ urlpatterns = [
     path('article/<int:pk>/delete', DeletePostView.as_view(), name="delete_post"),
     path('category/<str:cats>/', CategoryView, name='category'),
     path('like/<int:pk>', LikeView, name='like_post'),
-    path('about/', About, name='about'),
+    path('about/', About.as_view(), name='about'),
     path('article/<int:pk>/comment/', AddCommentView.as_view(), name="add_comment"),
 ]
