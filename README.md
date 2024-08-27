@@ -19,7 +19,9 @@ There is an admin login that allows site administrators to manage users and cont
 
 Technologies Used
 Backend: Django Framework
+
 Frontend: HTML, CSS, and JavaScript
+
 Database: SQL
 
 
@@ -38,7 +40,9 @@ whitenoise==5.2.0
 
 
 How to run the project:
+
 pip install -r Requirements.txt
+
 python manage.py runserver
 
 Go to http://127.0.0.1:8000/
